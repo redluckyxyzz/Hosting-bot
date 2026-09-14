@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#000000">
+<title>RED LUCKY XYZ</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+html,body{width:100%;min-height:100%;background:#000}
+
+body{
+  min-height:100vh;
+  overflow-x:hidden;
+  color:#fff;
+  font-family:Arial,Helvetica,sans-serif;
+  background:
+    radial-gradient(circle at 50% 28%,rgba(255,20,120,.30),transparent 38%),
+    radial-gradient(circle at 15% 80%,rgba(255,0,90,.16),transparent 30%),
+    #14030b;
+}
+
+/* ---------- Floating pink love icons ---------- */
+#particles{
+  position:fixed;
+  inset:0;
+  overflow:hidden;
+  pointer-events:none;
+  z-index:0;
+}
+
+.particle{
+  position:absolute;
+  bottom:-45px;
+  color:#ff4f9a;
+  font-size:18px;
+  line-height:1;
+  text-shadow:
+    0 0 5px rgba(255,79,154,.9),
+    0 0 13px rgba(255,20,120,.7);
+  opacity:0;
+  animation:floatLove var(--duration) linear infinite;
+  animation-delay:var(--delay);
+  will-change:transform,opacity;
+}
+
+.particle.small{font-size:14px}
+.particle.big{font-size:22px}
+
+@keyframes floatLove{
+  0%{
+    transform:translate3d(0,25px,0) rotate(-8deg) scale(.55);
+    opacity:0;
+  }
+  12%{opacity:.82}
+  38%{
+    transform:translate3d(var(--drift),-38vh,0) rotate(8deg) scale(1);
+    opacity:.75;
+  }
+  70%{
+    transform:translate3d(calc(var(--drift) * -.55),-75vh,0) rotate(-6deg) scale(.9);
+    opacity:.5;
+  }
+  100%{
+    transform:translate3d(var(--drift),-118vh,0) rotate(10deg) scale(.55);
+    opacity:0;
+  }
+}
+
+.container{
+  position:relative;
+  z-index:2;
+  width:min(92vw,560px);
+  margin:0 auto;
+  padding:48px 0 35px;
+  text-align:center;
+}
+
+/* Glowing deep-color rotating logo borders */
+.logo-area{
+  position:relative;
+  width:270px;
+  height:270px;
+  margin:0 auto 14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+ .ring{
+  position:absolute;
+  border-radius:50%;
+  border:5px solid transparent;
+  pointer-events:none;
+  will-change:transform;
+  box-sizing:border-box;
+  filter:none;
+}
+
+.ring.green{
+  width:258px;height:258px;
+  border-top-color:#00a83b;
+  border-right-color:#00a83b;
+  animation:rotateClockwise 4.8s linear infinite;
+}
+
+.ring.red{
+  width:228px;height:228px;
+  border-bottom-color:#e0003f;
+  border-left-color:#e0003f;
+  animation:rotateCounter 4s linear infinite;
+}
+
+.ring.blue{
+  width:198px;height:198px;
+  border-top-color:#087cff;
+  border-right-color:#087cff;
+  animation:rotateClockwise 5.7s linear infinite;
+}
+
+@keyframes rotateClockwise{
+  from{transform:rotate(0deg)}
+  to{transform:rotate(360deg)}
+}
+
+@keyframes rotateCounter{
+  from{transform:rotate(360deg)}
+  to{transform:rotate(0deg)}
+}
+
+.logo{
+  position:relative;
+  z-index:5;
+  width:150px;
+  height:150px;
+  border-radius:50%;
+  border:5px solid #fff;
+  background:#070707;
+  object-fit:cover;
+  color:transparent;
+  box-shadow:
+    0 0 5px #fff,
+    0 0 13px rgba(255,255,255,.9),
+    0 0 30px rgba(255,255,255,.25);
+}
+
+
+/* Different font for RED LUCKY XYZ */
+.brand{
+  margin:0 0 28px;
+  color:#fff;
+  font-family:"Brush Script MT","Segoe Script","Lucida Handwriting",cursive;
+  font-style:normal;
+  font-weight:700;
+  font-size:clamp(30px,7.4vw,45px);
+  letter-spacing:3px;
+  text-shadow:
+    0 0 5px rgba(255,255,255,.9),
+    0 0 15px rgba(255,255,255,.18);
+}
+
+/* 8 glowing buttons */
+.buttons{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:13px;
+  width:100%;
+}
+
+.btn{
+  min-height:64px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:12px 9px;
+  border:1px solid rgba(255,105,160,.16);
+  border-radius:12px;
+  color:rgba(255,255,255,.92);
+  text-decoration:none;
+  background:rgba(255,45,125,.025);
+  font-family:"Century Gothic","Arial Narrow",Arial,sans-serif;
+  font-weight:800;
+  font-size:14px;
+  letter-spacing:.8px;
+  box-shadow:inset 0 0 14px rgba(255,80,150,.018);
+  backdrop-filter:blur(3px);
+  -webkit-backdrop-filter:blur(3px);
+  transition:
+    transform .22s ease,
+    border-color .22s ease,
+    background .22s ease,
+    box-shadow .22s ease;
+  -webkit-tap-highlight-color:transparent;
+}
+
+.btn .icon{
+  width:18px;
+  height:18px;
+  flex:0 0 18px;
+  margin-right:8px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  line-height:1;
+  letter-spacing:0;
+}
+
+.btn .icon svg{
+  width:18px;
+  height:18px;
+  display:block;
+}
+
+.btn .youtube-icon svg{filter:drop-shadow(0 0 2px rgba(255,30,60,.45))}
+.btn .instagram-icon svg{filter:drop-shadow(0 0 2px rgba(255,90,170,.45))}
+.btn .telegram-icon svg{filter:drop-shadow(0 0 2px rgba(30,170,255,.45))}
+
+.btn:hover{
+  transform:translateY(-2px);
+  background:rgba(255,55,135,.055);
+  border-color:rgba(255,130,180,.42);
+  box-shadow:0 0 12px rgba(255,40,120,.08);
+}
+
+.btn:active{transform:scale(.96)}
+
+.youtube:hover{
+  border-color:#ff123f;
+  box-shadow:0 0 7px #ff123f,0 0 20px rgba(255,18,63,.55),0 0 34px rgba(180,0,40,.25);
+}
+.instagram:hover{
+  border-color:#ff4f9a;
+  box-shadow:0 0 7px #ff4f9a,0 0 20px rgba(255,79,154,.55),0 0 34px rgba(180,20,100,.25);
+}
+.telegram:hover{
+  border-color:#16a9ff;
+  box-shadow:0 0 7px #16a9ff,0 0 20px rgba(22,169,255,.55),0 0 34px rgba(0,90,180,.25);
+}
+.channel:hover{
+  border-color:#087cff;
+  box-shadow:0 0 7px #087cff,0 0 20px rgba(8,124,255,.55),0 0 34px rgba(0,70,180,.25);
+}
+.hosting:hover{
+  border-color:#00ff5e;
+  box-shadow:0 0 7px #00ff5e,0 0 20px rgba(0,255,94,.5),0 0 34px rgba(0,150,60,.22);
+}
+.store:hover{
+  border-color:#ffd43b;
+  box-shadow:0 0 7px #ffd43b,0 0 20px rgba(255,212,59,.5),0 0 34px rgba(170,120,0,.22);
+}
+
+footer{
+  margin-top:28px;
+  color:rgba(255,255,255,.42);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:10px;
+  letter-spacing:1px;
+}
+
+@media(max-width:430px){
+  .container{padding-top:28px}
+  .logo-area{
+    transform:scale(.87);
+    margin-bottom:-5px;
+  }
+  .brand{
+    font-size:28px;
+    letter-spacing:2px;
+  }
+  .buttons{gap:10px}
+  .btn{
+    min-height:59px;
+    font-size:12px;
+    letter-spacing:.55px;
+    border-radius:12px;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  .particle,.ring{animation:none!important}
+}
+</style>
+</head>
+
+<body>
+
+<div id="particles"></div>
+
+<main class="container">
+
+  <section class="logo-area" aria-label="RED LUCKY XYZ logo">
+    <div class="ring green"></div>
+    <div class="ring red"></div>
+    <div class="ring blue"></div>
+
+    <!--
+      DEFAULT LOGO:
+      Change this image URL later.
+      If the image cannot load, the CSS logo underneath remains visible.
+    -->
+    <img
+      class="logo"
+      src="https://i.ibb.co/DftPhRXB/1792642627ec4f35dc8e4ab04ab10750.jpg"
+      alt="RED LUCKY XYZ"
+    >
+</section>
+
+  <h1 class="brand">𝗥𝗘𝗗 𝗟𝗨𝗖𝗞𝗬 𝗫𝗬𝗭</h1>
+
+  <section class="buttons">
+
+    <a class="btn youtube"
+       href="https://youtube.com/@redluckyxyz"
+       target="_blank" rel="noopener noreferrer">
+      <span class="icon youtube-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="5" width="20" height="14" rx="4" fill="#FF0033"/>
+          <path d="M10 8.5L16 12L10 15.5V8.5Z" fill="white"/>
+        </svg>
+      </span>𝗬ᴏᴜᴛᴜʙᴇ ᴄʜᴀɴɴᴇʟ
+    </a>
+
+    <a class="btn instagram"
+       href="https://www.instagram.com/redluckyxyz"
+       target="_blank" rel="noopener noreferrer">
+      <span class="icon instagram-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="3" y="3" width="18" height="18" rx="5" stroke="white" stroke-width="2.4"/>
+          <circle cx="12" cy="12" r="4.2" stroke="white" stroke-width="2.2"/>
+          <circle cx="17.4" cy="6.7" r="1.3" fill="white"/>
+        </svg>
+      </span>𝗜ɴꜱᴛᴀɢʀᴀᴍ
+    </a>
+
+    <a class="btn telegram"
+       href="https://t.me/Redluckyxyz"
+       target="_blank" rel="noopener noreferrer">
+      <span class="icon telegram-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="10" fill="#229ED9"/>
+          <path d="M5.4 11.7L17.7 7.1C18.3 6.9 18.8 7.25 18.6 7.9L16.4 17.1C16.25 17.75 15.85 17.9 15.3 17.55L12.2 15.25L10.55 16.85C10.35 17.05 10.2 17.2 9.8 17.2L10.05 14.05L15.8 8.85C16.05 8.65 15.75 8.5 15.45 8.7L8.35 13.15L5.3 12.2C4.65 12 4.65 11.8 5.4 11.7Z" fill="white"/>
+        </svg>
+      </span>𝗧ᴇʟᴇɢʀᴀᴍ ᴄᴏɴᴛᴀᴄᴛ
+    </a>
+
+    <a class="btn channel"
+       href="https://t.me/Redluckyxyz0"
+       target="_blank" rel="noopener noreferrer">
+      <span class="icon telegram-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="10" fill="#229ED9"/>
+          <path d="M5.4 11.7L17.7 7.1C18.3 6.9 18.8 7.25 18.6 7.9L16.4 17.1C16.25 17.75 15.85 17.9 15.3 17.55L12.2 15.25L10.55 16.85C10.35 17.05 10.2 17.2 9.8 17.2L10.05 14.05L15.8 8.85C16.05 8.65 15.75 8.5 15.45 8.7L8.35 13.15L5.3 12.2C4.65 12 4.65 11.8 5.4 11.7Z" fill="white"/>
+        </svg>
+      </span>𝗖ʜᴀɴɴᴇʟ 𝟭
+    </a>
+
+    <a class="btn channel"
+       href="https://t.me/Redluckyxyz1"
+       target="_blank" rel="noopener noreferrer">
+      <span class="icon telegram-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="10" fill="#229ED9"/>
+          <path d="M5.4 11.7L17.7 7.1C18.3 6.9 18.8 7.25 18.6 7.9L16.4 17.1C16.25 17.75 15.85 17.9 15.3 17.55L12.2 15.25L10.55 16.85C10.35 17.05 10.2 17.2 9.8 17.2L10.05 14.05L15.8 8.85C16.05 8.65 15.75 8.5 15.45 8.7L8.35 13.15L5.3 12.2C4.65 12 4.65 11.8 5.4 11.7Z" fill="white"/>
+        </svg>
+      </span>𝗖ʜᴀɴɴᴇʟ 𝟮
+    </a>
+
+    <a class="btn channel"
+       href="https://t.me/DGMFF20K"
+       target="_blank" rel="noopener noreferrer">
+      <span class="icon telegram-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="10" fill="#229ED9"/>
+          <path d="M5.4 11.7L17.7 7.1C18.3 6.9 18.8 7.25 18.6 7.9L16.4 17.1C16.25 17.75 15.85 17.9 15.3 17.55L12.2 15.25L10.55 16.85C10.35 17.05 10.2 17.2 9.8 17.2L10.05 14.05L15.8 8.85C16.05 8.65 15.75 8.5 15.45 8.7L8.35 13.15L5.3 12.2C4.65 12 4.65 11.8 5.4 11.7Z" fill="white"/>
+        </svg>
+      </span>𝗖ʜᴀɴɴᴇʟ 𝟯
+    </a>
+
+    <a class="btn hosting"
+       href="https://t.me/LuckyHostingBot"
+       target="_blank" rel="noopener noreferrer">
+      <span class="icon telegram-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="10" fill="#229ED9"/>
+          <path d="M5.4 11.7L17.7 7.1C18.3 6.9 18.8 7.25 18.6 7.9L16.4 17.1C16.25 17.75 15.85 17.9 15.3 17.55L12.2 15.25L10.55 16.85C10.35 17.05 10.2 17.2 9.8 17.2L10.05 14.05L15.8 8.85C16.05 8.65 15.75 8.5 15.45 8.7L8.35 13.15L5.3 12.2C4.65 12 4.65 11.8 5.4 11.7Z" fill="white"/>
+        </svg>
+      </span>𝗛ᴏꜱᴛɪɴɢ ʙᴏᴛ
+    </a>
+
+    <a class="btn store"
+       href="https://t.me/LuckyFileStorebot"
+       target="_blank" rel="noopener noreferrer">
+      <span class="icon telegram-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="10" fill="#229ED9"/>
+          <path d="M5.4 11.7L17.7 7.1C18.3 6.9 18.8 7.25 18.6 7.9L16.4 17.1C16.25 17.75 15.85 17.9 15.3 17.55L12.2 15.25L10.55 16.85C10.35 17.05 10.2 17.2 9.8 17.2L10.05 14.05L15.8 8.85C16.05 8.65 15.75 8.5 15.45 8.7L8.35 13.15L5.3 12.2C4.65 12 4.65 11.8 5.4 11.7Z" fill="white"/>
+        </svg>
+      </span>𝗦ᴛᴏʀᴇ ʙᴏᴛ
+    </a>
+
+  </section>
+
+  <footer>© 2026 RED LUCKY XYZ • All Rights Reserved</footer>
+</main>
+
+<script>
+/* A small number of clearly visible pink hearts moving upward */
+const particleBox = document.getElementById("particles");
+const positions = [8, 20, 34, 48, 62, 76, 90];
+
+positions.forEach((pos, i) => {
+  const heart = document.createElement("span");
+  heart.className =
+    "particle " +
+    (i === 2 || i === 5 ? "big" : i % 2 === 0 ? "small" : "");
+
+  heart.textContent = "♥";
+  heart.style.left = pos + "%";
+  heart.style.setProperty("--duration", (12 + (i % 4) * 1.8) + "s");
+  heart.style.setProperty("--delay", (-i * 2.1) + "s");
+  heart.style.setProperty(
+    "--drift",
+    ((i % 2 ? -1 : 1) * (14 + i * 3)) + "px"
+  );
+
+  particleBox.appendChild(heart);
+});
+</script>
+
+</body>
+</html>
